@@ -1,0 +1,11 @@
+body {
+  font-family: 'Futura', sans-serif;
+  background-color: #FAE7C9;
+  color: #222;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+}
