@@ -1,11 +1,69 @@
-body {
-  font-family: 'Futura', sans-serif;
-  background-color: #FAE7C9;
-  color: #222;
-  margin: 0;
-  padding: 0;
+body{
+max-width: 1200px;
+margin: 0 auto;
+padding: 2rem 0;
 }
 
+
+header {
+background: white;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+position: sticky;
+top: 0;
+z-index: 100;
+}
+
+
+.main-nav ul {
+display: flex;
+gap: 1.5rem;
+list-style: none;
+justify-content: center;
+padding: 1rem;
+margin: 0;
+}
+
+
+.main-nav a {
+text-decoration: none;
+color: #222;
+font-weight: 500;
+transition: color 0.3s;
+}
+
+
+.main-nav a:hover {
+color: #ff631b;
+}
+
+
+h1, h2, h3 {
+font-weight: 600;
+color: #111;
+}
+
+
+h2 {
+margin-top: 2rem;
+}
+
+
+.alt-bg {
+background: #f1f1f1;
+}
+
+
+footer {
+background: #222;
+color: white;
+text-align: center;
+padding: 1rem 0;
+}
+
+
 @media (max-width: 768px) {
-  body { font-size: 14px; }
+.main-nav ul {
+flex-direction: column;
+text-align: center;
+}
 }

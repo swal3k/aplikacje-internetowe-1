@@ -1,34 +1,73 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zen Garden - Oliwier Szwalek</title>
-
-  <script src="//wi.arturk.pl/zen-style.js.php?styles[]=style-1&styles[]=style-2" defer></script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Zen Garden - Oliwier Szwalek</title>
+<script src="//wi.arturk.pl/zen-style.js.php?styles[]=style-1&styles[]=style-2" defer></script>
+<link rel="stylesheet" href="style-1.css" />
 </head>
 <body>
-  <header>
-    <h1>Zen Garden - Stylizacja CSS</h1>
-  </header>
+<header class="site-header">
+<div class="container">
+<h1>Zen Garden: Siła CSS</h1>
+<nav class="main-nav">
+<ul>
+<li><a href="#section1">O projekcie</a></li>
+<li><a href="#section2">Sekcje</a></li>
+<li><a href="#section3">Lista</a></li>
+<li><a href="#footer">Kontakt</a></li>
+</ul>
+</nav>
+</div>
+</header>
 
-  <main>
-    <h2>Sekcja 1</h2>
-    <h3>Podsekcja 1.1</h3>
-    <p>Przykładowy tekst...</p>
 
-    <h3>Podsekcja 1.2</h3>
-    <p>Przykładowy tekst...</p>
+<main>
+<section id="section1" class="section">
+<div class="container">
+<h2>Wprowadzenie</h2>
+<h3>Cel projektu</h3>
+<p>Projekt Zen Garden pokazuje potęgę CSS poprzez zmianę wyglądu tej samej strony HTML przy pomocy różnych arkuszy stylów. Celem jest zrozumienie, że treść i forma mogą być od siebie całkowicie oddzielone.</p>
 
-    <h2>Sekcja 2</h2>
-    <ul>
-      <li>Punkt 1</li>
-      <li>Punkt 2</li>
-    </ul>
-  </main>
 
-  <footer>
-    <p>&copy; 2025 Oliwier Szwalek</p>
-  </footer>
-</body>
-</html>
+<h3>Inspiracja</h3>
+<p>Inspiracją dla projektu jest klasyczny CSS Zen Garden, który od lat pokazuje, że prosty HTML może być podstawą niezliczonych wizualnych interpretacji.</p>
+</div>
+</section>
+
+
+<section id="section2" class="section alt-bg">
+<div class="container">
+<h2>Struktura strony</h2>
+<h3>Elementy główne</h3>
+<p>Strona zawiera nagłówek, sekcje z treścią, stopkę oraz dynamiczny przełącznik styli. Układ jest responsywny, dostosowany do ekranów komputerów i urządzeń mobilnych.</p>
+
+
+<h3>Dostosowanie do użytkownika</h3>
+<p>Każdy styl CSS zmienia nie tylko kolory, ale też układ elementów, interlinię, marginesy oraz hierarchię wizualną, by maksymalnie poprawić czytelność i doświadczenie użytkownika.</p>
+</div>
+</section>
+
+
+<section id="section3" class="section">
+<div class="container">
+<h2>Przykładowa lista</h2>
+<h3>Kluczowe zasady UX/UI</h3>
+<ul>
+<li>Używaj spójnych kolorów i typografii.</li>
+<li>Zadbaj o odpowiedni kontrast.</li>
+<li>Dostosuj układ do różnych rozdzielczości ekranów.</li>
+<li>Minimalizuj ilość rozpraszających elementów.</li>
+<li>Zapewnij intuicyjną nawigację.</li>
+</ul>
+</div>
+</section>
+</main>
+
+
+<footer id="footer" class="site-footer">
+<div class="container">
+<p>&copy; 2025 Oliwier Szwalek | Projekt Zen Garden LAB A</p>
+</div>
+</footer>
