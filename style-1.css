@@ -6,13 +6,45 @@ padding: 2rem 0;
 
 
 header {
-background: white;
+background: rgba(240, 227, 227, 0.1);
 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 position: sticky;
 top: 0;
+width: 100vw;
 z-index: 100;
 }
 
+.hero {
+    position: relative;
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    min-height: 400px; /* Make hero section larger */
+    height: 80vh;      /* Responsive height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(250, 231, 201, 0.6);
+    z-index: 1; /* Ensure the overlay is above the image */
+    pointer-events: none;
+}
+
+.hero.container {
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+}
 
 .main-nav ul {
 display: flex;
@@ -58,6 +90,28 @@ background: #222;
 color: white;
 text-align: center;
 padding: 1rem 0;
+}
+
+
+.hero-btn {
+    border: none;
+    border-top: 3px solid #ff631b; /* Overline */
+    border-radius: 10px;
+    padding: 0.75em 2em;
+    background: #fff;
+    color: #ff631b;
+    font-size: 1.1em;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    position: relative;
+    z-index: 2;
+    /*transition: background 0.2s, color 0.2s;8*/
+}
+
+.hero-btn:hover {
+    background: #ff631b;
+    color: #fff;
 }
 
 
