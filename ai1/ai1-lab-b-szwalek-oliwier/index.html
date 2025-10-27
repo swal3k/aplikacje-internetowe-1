@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista zadań</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Wyjazdowa checklista</h1>
+            <p>Zadania do wykonania przed wyjazdem</p>
+        </div>
+
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Szukaj zadań..."
+            >
+        </div>
+
+        <div class="task-list" id="taskList">
+            <div class="empty-state">
+                <div class="empty-state-text">Brak zadań. Dodaj pierwsze zadanie poniżej!</div>
+            </div>
+        </div>
+
+        <div class="add-task-container">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="taskInput" 
+                    class="task-input" 
+                    placeholder="Nowe zadanie"
+                    maxlength="255"
+                >
+                <div id="taskError" class="error-message"></div>
+            </div>
+
+            <div class="input-group">
+                <input 
+                    type="datetime-local" 
+                    id="deadlineInput" 
+                    class="date-input"
+                >
+                <div id="dateError" class="error-message"></div>
+            </div>
+
+            <button id="addTaskBtn" class="add-btn">Dodaj zadanie</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
