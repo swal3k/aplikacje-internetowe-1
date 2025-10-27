@@ -3,6 +3,7 @@ class Todo {
         this.tasks = [];
         this.editingTaskId = null;
         this.term = '';
+        document.addEventListener('click', (e) => this.handleOutsideClick(e));
         this.init();
     }
 
@@ -38,7 +39,6 @@ class Todo {
         });
 
         searchInput.addEventListener('input', (e) => {
-                // this.renderTasks(e.target.value);
             this.term = e.target.value;
             this.draw();
         });
@@ -47,7 +47,8 @@ class Todo {
             if (this.editingTaskId !== null) {
                 const taskItem = document.querySelector(`[data-task-id="${this.editingTaskId}"]`);
                 if (taskItem && !taskItem.contains(e.target)) {
-                    this.saveEdit(this.editingTaskId);
+                    this.editingTaskId = null;
+                    this.draw();
                 }
             }
         });
@@ -117,7 +118,8 @@ class Todo {
             id: Date.now(),
             text: taskText,
             deadline: deadline || null,
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            completed: false
         };
 
         this.tasks.unshift(task);
@@ -140,42 +142,7 @@ class Todo {
 
     startEdit(taskId) {
         this.editingTaskId = taskId;
-        const task = this.tasks.find(t => t.id === taskId);
-        const taskItem = document.querySelector(`[data-task-id="${taskId}"]`);
-        const taskContent = taskItem.querySelector('.task-content');
-
-        taskContent.innerHTML = `
-            <input 
-                type="text" 
-                class="task-edit-input" 
-                value="${this.escapeHtml(task.text)}" 
-                maxlength="255"
-                id="edit-text-${taskId}"
-            >
-            <input 
-                type="datetime-local" 
-                class="task-edit-date" 
-                value="${task.deadline || ''}"
-                id="edit-date-${taskId}"
-            >
-        `;
-
-        const editInput = document.getElementById(`edit-text-${taskId}`);
-        editInput.focus();
-        editInput.select();
-
-        editInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                this.saveEdit(taskId);
-            }
-        });
-
-        editInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                this.editingTaskId = null;
-                this.draw();
-            }
-        });
+        this.draw();
     }
 
     saveEdit(taskId) {
@@ -280,7 +247,6 @@ class Todo {
             if (this.term && this.term.length >= 2) {
                 taskList.innerHTML = `
                     <div class="empty-state">
-                        
                         <div class="empty-state-text">Nie znaleziono zadań zawierających "${this.escapeHtml(this.term)}"</div>
                     </div>
                 `;
@@ -294,32 +260,111 @@ class Todo {
             return;
         }
 
-        taskList.innerHTML = filteredTasks.map(task => `
-            <div class="task-item" data-task-id="${task.id}">
-                <div class="task-content">
-                    <div class="task-text">${this.highlightText(task.text, this.term)}</div>
-                    ${task.deadline ? `<div class="task-deadline">${this.formatDate(task.deadline)}</div>` : ''}
-                </div>
-                <button class="delete-btn" data-task-id="${task.id}">🗑️ Usuń</button>
-            </div>
-        `).join('');
+        taskList.innerHTML = filteredTasks.map(task => {
+            if (this.editingTaskId === task.id) {
+                return `
+                    <div class="task-item editing" data-task-id="${task.id}">
+                        <input type="checkbox" class="task-checkbox" data-task-id="${task.id}" ${task.completed ? 'checked' : ''} />
+                        <div class="task-content">
+                            <input type="text" id="edit-text-${task.id}" class="task-edit-input" value="${this.escapeHtml(task.text)}" maxlength="255" />
+                            <input type="datetime-local" id="edit-date-${task.id}" class="task-edit-date" value="${task.deadline || ''}" />
+                            <div class="edit-controls">
+                                <button class="save-btn" data-task-id="${task.id}">Zapisz</button>
+                                <button class="cancel-btn" data-task-id="${task.id}">Anuluj</button>
+                            </div>
+                        </div>
+                        <button class="delete-btn" data-task-id="${task.id}">🗑️ Usuń</button>
+                    </div>
+                `;
+            }
 
-        document.querySelectorAll('.task-content').forEach(content => {
-            content.addEventListener('click', (e) => {
-                const taskId = parseInt(e.currentTarget.closest('.task-item').dataset.taskId);
+            return `
+                <div class="task-item" data-task-id="${task.id}">
+                    <input type="checkbox" class="task-checkbox" data-task-id="${task.id}" ${task.completed ? 'checked' : ''} />
+                    <div class="task-content">
+                        <div class="task-text">${this.highlightText(task.text, this.term)}</div>
+                        ${task.deadline ? `<div class="task-deadline">${this.formatDate(task.deadline)}</div>` : ''}
+                    </div>
+                    <button class="delete-btn" data-task-id="${task.id}">🗑️ Usuń</button>
+                </div>
+            `;
+        }).join('');
+
+        document.querySelectorAll('.task-text').forEach(el => {
+            el.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const taskId = parseInt(el.closest('.task-item').dataset.taskId);
                 this.startEdit(taskId);
+            });
+        });
+
+        document.querySelectorAll('.task-checkbox').forEach(cb => {
+            cb.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const taskId = parseInt(cb.dataset.taskId);
+                const task = this.tasks.find(t => t.id === taskId);
+                if (task) {
+                    task.completed = !!cb.checked;
+                    this.saveTasks();
+                    this.draw();
+                }
             });
         });
 
         document.querySelectorAll('.delete-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const taskId = parseInt(e.target.dataset.taskId);
+                const taskId = parseInt(btn.dataset.taskId);
                 this.deleteTask(taskId);
             });
         });
+
+        document.querySelectorAll('.save-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const taskId = parseInt(btn.dataset.taskId);
+                this.saveEdit(taskId);
+            });
+        });
+
+        document.querySelectorAll('.cancel-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.editingTaskId = null;
+                this.draw();
+            });
+        });
+
+        document.querySelectorAll('.task-edit-input').forEach(input => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const taskId = parseInt(input.closest('.task-item').dataset.taskId);
+                    this.saveEdit(taskId);
+                }
+            });
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    this.editingTaskId = null;
+                    this.draw();
+                }
+            });
+        });
     }
+
+    handleOutsideClick(e) {
+        if (this.editingTaskId !== null) {
+            const editingEl = document.querySelector(`.task-item[data-task-id="${this.editingTaskId}"]`);
+            if(editingEl && !editingEl.contains(e.target)) {
+                this.editingId = null;
+                this.draw();
+            }
+        }
+    }
+
+    
 }
+
+
 
 document.addEventListener('DOMContentLoaded', () => {
     new Todo();
