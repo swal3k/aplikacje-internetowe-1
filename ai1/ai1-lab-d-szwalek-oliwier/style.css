@@ -1,0 +1,256 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header{
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    animation: fadeIn 0.6s ease-in;
+}
+
+header h1{
+    font-size: 3em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.subtitle{
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+
+.search-box{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    animation: slideDown 0.6s ease-in;
+}
+
+#cityInput{
+    flex: 1;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#cityInput:focus{
+    outline: none;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+#searchButton{
+    padding: 15px 25px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: black;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+#searchButton:hover{
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+#searchButton:active{
+    transform: translateY(-1px);
+}
+
+
+.loading{
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+.loading.show{
+    display: block;
+}
+
+.aktualna-pogoda{
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
+    animation: fadeInUp 0.6s ease-in;
+}
+
+.aktualna-pogoda h2{
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #667eea;
+}
+
+.pogoda-main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.pogoda-ikonka{
+    font-size: 5em;
+}
+
+.temperatura{
+    font-size: 4em;
+    font-weight: bold;
+    color: #f5576c;
+}
+
+.pogoda-opis{
+    font-size: 1.2em;
+    text-transform: capitalize;
+    color: #666;
+}
+
+.pogoda-szczegoly{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.detail-item{
+    background: #f7f7f7;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.detail-label{
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.detail-value{
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+
+.pogoda-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.prognoza-card{
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.prognoza-card:hover{
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    transform: translateY(-5px);
+}
+
+.prognoza-data{
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 1rem;
+}
+
+.prognoza-icon{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.prognoza-temp{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.prognoza-desc{
+    font-size: 0.9rem;
+    color: #666;
+    text-transform: capitalize;
+    margin-top: 5px;
+}
+
+@keyframes fadeIn{
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown{
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp{
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes spin{
+    to { transform: rotate(360deg); }
+}
+
+@keyframes shake{
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+
+@media (max-width: 768px){
+    header h1{
+        font-size: 2.2em;
+    }
+    
+    .search-box{
+        flex-direction: column;
+    }
+
+    .temperatura{
+        font-size: 3em;
+    }
+
+    .forecast-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
