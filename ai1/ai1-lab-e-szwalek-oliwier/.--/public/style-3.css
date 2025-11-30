@@ -1,0 +1,251 @@
+body{
+    background-color: #FFFFFF;
+    color: #000000;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding : 2rem 0;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.8;
+}
+
+header{
+    background: #FFFFFF;
+    box-shadow: none;
+    border-bottom: 1px solid #E0E0E0;
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    z-index: 100;
+}
+
+.header-inner{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+}
+
+.logo{
+    height: 50px;
+    width: auto;
+}
+
+.hero{
+    position: relative;
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.5);
+    z-index: 1;
+}
+
+.hero .container{
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.hero h1{
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    color: #000000;
+    text-transform: lowercase;
+    letter-spacing: 0.05em;
+}
+
+.hero-btn{
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6em 2.5em;
+    background: transparent;
+    border: 1px solid #000000;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+
+.hero::before:hover{
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.main-nav ul{
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    justify-content: center;
+    padding: 1rem;
+    margin: 0;
+}
+
+.main-nav a{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 0.9rem;
+    text-transform: lowercase;
+    transition: opacity 0.3s;
+}
+
+.main-nav a:hover{
+    opacity: 0.5;
+}
+
+h1, h2, h3{
+    font-weight: 300;
+    color: #000000;
+}
+
+h2{ 
+    font-size: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+h3{
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+p{
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #333333;
+
+}
+
+footer{
+    background: #FFFFFF;
+    color: #000000;
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid #E0E0E0;
+    font-size: 0.9rem;
+
+}
+
+
+.section.about{
+    background: #fafafa;
+    padding: 4rem 2rem;
+    margin: 3rem 0;
+}
+.about-inner{
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-media{
+    flex: 0 0 400px;
+}
+
+.about-media img{
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%);
+}
+
+.about-content{
+    flex: 1;
+    padding: 0.5rem 1rem;
+}
+
+@media (max-width: 768px){
+    .about-inner{
+        flex-direction: column;
+    }
+    .about-media{
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1px;
+    margin-top: 3rem;
+    background: #E0E0E0;
+}
+
+.product-item{
+    background: #FFFFFF;
+    padding: 2rem;
+    text-align: center;
+    transition: background 0.3s ease;
+}
+
+.product-item:hover{
+    background: #f5f5f5;
+}
+
+.product-item img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    filter: grayscale(100%);
+}
+
+
+.product-item h3{
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem;
+}
+.product-item p{
+    font-size: 0.9rem;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.opinie{
+    text-align: center;
+    padding: 5rem 2rem;
+    background: #fafafa;
+    margin: 4rem auto;
+    max-width: 800px;
+}
+
+.opinia-box{
+    display: inline-block;
+    background: #FFFFFF;
+    border-left: 2px solid #000000;
+    padding: 2rem 3rem;
+    max-width: 600px;
+    margin-top: 2rem;
+}
+
+.opinia-text{
+    font-size:1.2rem;
+    font-style: italic;
+    color: #333333;
+    font-weight: 300;
+}
+
+.opinia-autor{
+    font-weight: 400;
+    color: #000000;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+}
