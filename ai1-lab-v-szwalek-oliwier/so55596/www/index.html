@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prognoza pogody</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="cordova.js"></script> 
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Prognoza Pogody</h1>
+            <p class="subtitle">Sprawdź aktualną prognozę pogody i prognozę na najbliższe dni</p>
+        </header>
+
+            <div class="search-box">
+                <input type="text" id="cityInput" placeholder="Wpisz nazwę miasta...">
+                <button id="searchButton">Pogoda</button>
+        </div>
+
+        <div id="loading" class="loading"></div>
+        <div id="aktualnaPogoda" class="aktualna-pogoda"></div>
+        <div id="prognoza" class="prognoza-container"></div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+
+
+</html>
