@@ -7,7 +7,6 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
-/* HEADER */
 header {
   background: rgba(20, 20, 20, 0);
   box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
@@ -49,7 +48,6 @@ header {
   color: #FF631B;
 }
 
-/* HERO */
 .hero {
   background-image: url('images/hero.jpg');
   background-size: cover;
@@ -97,7 +95,6 @@ header {
   background: #F8EDE5;
 }
 
-/* SECTIONS */
 .section.about {
   background: #1A1A1A;
   border-radius: 12px;
@@ -130,7 +127,6 @@ header {
   color: #ddd;
 }
 
-/* OPINIE */
 .opinie {
   background: #141414;
   border: 3px solid #fca983;
@@ -162,7 +158,6 @@ header {
   font-weight: 600;
 }
 
-/* FOOTER */
 footer {
   background: linear-gradient(135deg, #0A0A0A, #1E1E1E);
   color: #F8EDE5;
@@ -171,7 +166,6 @@ footer {
   border-top: 2px solid #FF631B;
 }
 
-/* TYPOGRAFIA */
 h2 {
   font-size: 36px;
   color: #FFDDDD;
